@@ -2,14 +2,6 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const shapes = require("./library/shapes.js");
 
-const newCircle = new shapes.Circle();
-const newTriangle = new shapes.Triangle();
-const newSquare = new shapes.Square();
-
-newCircle.debug();
-newTriangle.debug();
-newSquare.debug();
-
 const questions = [
     {
         type: "input",
@@ -18,7 +10,7 @@ const questions = [
     },
     {
         type: "input",
-        name: "text-color",
+        name: "textColor",
         message: "Please enter text color:"
     },
     {
@@ -29,7 +21,7 @@ const questions = [
     },
     {
         type: "input",
-        name: "shape-color",
+        name: "shapeColor",
         message: "Please choose the color of the shape:"
     },
 ]
@@ -40,6 +32,20 @@ inquirer
     .then((data) => {
         const filename = `./examples/${data.text}.svg`;
 
-        fs.writeFile(filename, JSON.stringify(data, null, "\t"), (err) =>
+        let framework;
+
+        switch (data.shape) {
+            case "circle":
+                framework = new shapes.Circle(data.text, data.textColor, data.shapeColor).render();
+                break;
+            case "triangle":
+                framework = new shapes.Triangle(data.text, data.textColor, data.shapeColor).render();
+                break;
+            case "square":
+                framework = new shapes.Square(data.text, data.textColor, data.shapeColor).render();
+                break;
+        }
+
+        fs.writeFile(filename, framework, (err) =>
             err ? console.error(err) : console.log("Logo generated!"));
     });
