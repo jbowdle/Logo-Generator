@@ -22,7 +22,7 @@ class Shape {
 
     ${shapeLine}
 
-    <text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
+    <text x="150" y="115" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
 
 </svg>`;
         return shapeFramework;
@@ -45,7 +45,7 @@ class Triangle extends Shape {
     }
 
     render() {
-        return `<polygon points="0,200 150,0 300,200" fill="${this.shapeColor}" />`;
+        return `<polygon points="50,150 150,0 250,150" fill="${this.shapeColor}" />`;
     }
 }
 
@@ -55,7 +55,7 @@ class Square extends Shape {
     }
 
     render() {
-        return `<rect width="150" height="150" fill="${this.shapeColor}" />`;
+        return `<rect x="75" y="25" width="150" height="150" fill="${this.shapeColor}" />`;
     }
 }
 
