@@ -1,6 +1,14 @@
-// TODO: add validateText
-
 class Validate {
+    validateText(input) {
+        const string = new String(input);
+
+        if (string.length > 3) {
+            return "Text must be 3 characters or less";
+        } else {
+            return true;
+        }
+    }
+
     validateColor(input) {
         const colors = ["aliceblue", "antiquewhite", "aqua", "aquamarine", "azure", "beige", "bisque", 
         "black", "blanchedalmond", "blue", "blueviolet", "brown", "burlywood", "cadetblue",		

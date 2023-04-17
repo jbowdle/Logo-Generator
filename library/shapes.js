@@ -2,7 +2,7 @@
 // add shape class to extend classes?
 // Refine shapeFrameworks
 
-class Circle {
+class Shape {
     constructor(text, textColor, shapeColor){
         this.text = text;
         this.textColor = textColor;
@@ -10,11 +10,17 @@ class Circle {
     }
 
     render() {
+        throw new Error("Child class must implement a render() method");
+    }
+
+    renderFramework() {
+        const shapeLine = this.render();
+
         const shapeFramework = `<svg version="1.1"
     width="300" height="200"
     xmlns="http://www.w3.org/2000/svg">
 
-    <circle cx="150" cy="100" r="80" fill="${this.shapeColor}" />
+    ${shapeLine}
 
     <text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
 
@@ -23,45 +29,33 @@ class Circle {
     }
 }
 
-class Triangle {
+class Circle extends Shape {
     constructor(text, textColor, shapeColor){
-        this.text = text;
-        this.textColor = textColor;
-        this.shapeColor = shapeColor;
+        super(text, textColor, shapeColor);
     }
 
     render() {
-        const shapeFramework = `<svg version="1.1"
-    width="300" height="200"
-    xmlns="http://www.w3.org/2000/svg">
-
-    <polygon points="0,200 150,0 300,200" fill="${this.shapeColor}" />
-
-    <text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
-
-</svg>`;
-        return shapeFramework;
+        return `<circle cx="150" cy="100" r="80" fill="${this.shapeColor}" />`;
     }
 }
 
-class Square {
+class Triangle extends Shape {
     constructor(text, textColor, shapeColor){
-        this.text = text;
-        this.textColor = textColor;
-        this.shapeColor = shapeColor;
+        super(text, textColor, shapeColor);
     }
 
     render() {
-        const shapeFramework = `<svg version="1.1"
-    width="300" height="200"
-    xmlns="http://www.w3.org/2000/svg">
+        return `<polygon points="0,200 150,0 300,200" fill="${this.shapeColor}" />`;
+    }
+}
 
-    <rect width="150" height="150" fill="${this.shapeColor}" />
+class Square extends Shape {
+    constructor(text, textColor, shapeColor){
+        super(text, textColor, shapeColor);
+    }
 
-    <text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
-
-</svg>`;
-        return shapeFramework;
+    render() {
+        return `<rect width="150" height="150" fill="${this.shapeColor}" />`;
     }
 }
 
