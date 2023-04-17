@@ -1,5 +1,3 @@
-// TODO: figure out way to allow users to redo prompts that fail the validators
-
 const inquirer = require("inquirer");
 const fs = require("fs");
 const shapes = require("./library/shapes.js");
